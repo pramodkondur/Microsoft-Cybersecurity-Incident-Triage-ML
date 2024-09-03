@@ -128,6 +128,12 @@ Overall Accuracy: 93.30%
 Macro Average: Precision: 0.93, Recall: 0.93, F1-score: 0.93
 Weighted Average: Precision: 0.93, Recall: 0.93, F1-score: 0.93
 
+## Link to the notebook file
+You can view the full notebook with detailed analysis and code 
+Part1: [here](./MSCyberProj-Part1.ipynb).
+Part2: [here](./MSCyberProj-Part2.ipynb).
+
+
 ### Recommendations
 Integration into SOC Workflows:
 
