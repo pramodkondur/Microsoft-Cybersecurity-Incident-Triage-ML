@@ -1,6 +1,6 @@
 
 # **Microsoft : Classifying Cybersecurity Incidents with Machine Learning**
-## Skills take away From This Project
+## Skills take away from this Project
 Data Preprocessing and Feature Engineering
 
 Machine Learning Classification Techniques
@@ -33,7 +33,6 @@ GUIDE_test.csv (1.09 GB)
 
 The dataset provides three hierarchies of data: (1) evidence, (2) alert, and (3) incident. At the bottom level, evidence supports an alert. For example, an alert may be associated with multiple pieces of evidence such as an IP address, email, and user details, each containing specific supporting metadata. Above that, we have alerts that consolidate multiple pieces of evidence to signify a potential security incident. These alerts provide a broader context by aggregating related evidences to present a more comprehensive picture of the potential threat. At the highest level, incidents encompass one or more alerts, representing a cohesive narrative of a security breach or threat scenario.
 The primary objective of the dataset is to accurately predict incident triage grades—true positive (TP), benign positive (BP), and false positive (FP)—based on historical customer responses. To support this, we provide a training dataset containing 45 features, labels, and unique identifiers across 1M triage-annotated incidents. We divide the dataset into a train set containing 70% of the data and a test set with 30%, stratified based on triage grade ground-truth, OrgId, and DetectorId. We ensure that incidents are stratified together within the train and test sets to ensure the relevance of evidence and alert rows.
-
 
 ## Problem Statement:
 As a data scientist at Microsoft, he/she is tasked with enhancing the efficiency of Security Operation Centers (SOCs) by developing a machine learning model that can accurately predict the triage grade of cybersecurity incidents. Utilizing the comprehensive GUIDE dataset, your goal is to create a classification model that categorizes incidents as true positive (TP), benign positive (BP), or false positive (FP) based on historical evidence and customer responses. The model should be robust enough to support guided response systems in providing SOC analysts with precise, context-rich recommendations, ultimately improving the overall security posture of enterprise environments.
@@ -104,16 +103,28 @@ The solution developed in this project can be implemented in various business sc
 
 **Recommendations**: Provide recommendations on how the model can be integrated into SOC workflows, potential areas for future improvement, and considerations for deployment in a real-world setting.
 
+## Link to the notebook file
+You can view the code and in depth analysis in the full notebooks
 
-### Model Performance Analysis
+Part1: [here](./MSCyberProj-Part1.ipynb)
+
+Part2: [here](./MSCyberProj-Part2.ipynb)
+
+
+## Results and Model Performance Analysis
 
 **Training Dataset Performance:**
 
+Trained using ensemble methods XGBoost and Random Forest, Random Forest performs the best
 
+![CHEESE!](RF_train_metrics.png)
+![CHEESE!](XGB_train_metrics.png)
 
 **Test Dataset Performance:**
 
+Thus selected Random Forest Classifier and used it on the test dataset
 
+![CHEESE!](RF_test_metrics.png)
 
 **Inferences:**
 
@@ -124,29 +135,18 @@ The solution developed in this project can be implemented in various business sc
 **Class-wise Variations**: While the model maintains strong performance across most classes, there is a noticeable drop in performance for benign positive incidents in the test set. This could be an area for further investigation and improvement.
 Overall, the Random Forest model demonstrates strong capabilities in classifying cybersecurity incidents, with good generalization to real-world data. Future improvements could focus on enhancing performance for specific classes and continuing to monitor and adjust the model as more data becomes available.
 
-## Link to the notebook file
-You can view the full notebook with detailed analysis and code 
-
-Part1: [here](./MSCyberProj-Part1.ipynb).
-
-Part2: [here](./MSCyberProj-Part2.ipynb).
-
-
-### Recommendations
+## Recommendations
 
 **Integration into SOC Workflows:**
 
-  **Enhanced Incident Triage:** Integrate the model into SOC workflows to automate and refine the incident triage process, providing SOC analysts with precise classifications of incidents as TP, BP, or FP.
-  **Real-time Analysis:** Deploy the model in real-time environments to assist in immediate incident response, helping analysts prioritize and address security threats more effectively.
-
-**Potential Areas for Future Improvement:**
-
-**Feature Engineering:** Explore additional feature engineering opportunities to further enhance model performance, such as incorporating more granular time features or external threat intelligence data.
-
-**Model Refinement:** Continuously monitor model performance and retrain with new data to adapt to evolving threat landscapes and improve accuracy over time.
+  -**Enhanced Incident Triage:** Integrate the model into SOC workflows to automate and refine the incident triage process, providing SOC analysts with precise classifications of incidents as TP, BP, or FP.
+ 
+  -**Real-time Analysis:** Deploy the model in real-time environments to assist in immediate incident response, helping analysts prioritize and address security threats more effectively.
 
 **Considerations for Deployment:**
 
-  **Scalability**: Ensure the model can handle large volumes of data in a production environment, potentially leveraging scalable cloud infrastructure.
-  **Real-world Testing:** Conduct extensive testing in a real-world setting to validate model performance and address any operational challenges.
-  **Feedback Loop:** Implement a feedback loop to capture analyst insights and adjust the model based on real-world usage and performance metrics.
+  -**Scalability**: Ensure the model can handle large volumes of data in a production environment, potentially leveraging scalable cloud infrastructure.
+ 
+  -**Real-world Testing:** Conduct extensive testing in a real-world setting to validate model performance and address any operational challenges.
+  
+  -**Feedback Loop:** Implement a feedback loop to capture analyst insights and adjust the model based on real-world usage and performance metrics.
