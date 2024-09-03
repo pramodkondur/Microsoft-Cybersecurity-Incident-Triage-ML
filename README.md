@@ -110,6 +110,13 @@ Part1: [here](./MSCyberProj-Part1.ipynb)
 
 Part2: [here](./MSCyberProj-Part2.ipynb)
 
+## Utilization of Cloud 
+
+**Google Cloud**: Utilized Google Cloud Storage to store the huge data
+
+**BigQuery**: Utlized to fetch data from Google Cloud Storage into BigQuery to then be queried in jupyter notebook on cloud instance
+
+**Google Compute Engine**: Needed to utilize Google Cloud Compute instance due to the size of the dataset
 
 ## Results and Model Performance Analysis
 
