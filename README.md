@@ -104,48 +104,49 @@ The solution developed in this project can be implemented in various business sc
 
 **Recommendations**: Provide recommendations on how the model can be integrated into SOC workflows, potential areas for future improvement, and considerations for deployment in a real-world setting.
 
-### Results Summary
+
+### Model Performance Analysis
 
 **Training Dataset Performance:**
-Model: Random Forest
-Accuracy: 98.77%
-Classification Report:
-Class 0 (TP): Precision: 0.99, Recall: 0.99, F1-score: 0.99
-Class 1 (BP): Precision: 0.98, Recall: 0.98, F1-score: 0.98
-Class 2 (FP): Precision: 0.99, Recall: 0.99, F1-score: 0.99
-Overall Accuracy: 99.00%
-Macro Average: Precision: 0.99, Recall: 0.99, F1-score: 0.99
-Weighted Average: Precision: 0.99, Recall: 0.99, F1-score: 0.99
-Test Dataset Performance:
 
-Model: Random Forest
-Accuracy: 93.30%
-Classification Report:
-Class 0 (TP): Precision: 0.93, Recall: 0.95, F1-score: 0.94
-Class 1 (BP): Precision: 0.91, Recall: 0.89, F1-score: 0.90
-Class 2 (FP): Precision: 0.95, Recall: 0.94, F1-score: 0.95
-Overall Accuracy: 93.30%
-Macro Average: Precision: 0.93, Recall: 0.93, F1-score: 0.93
-Weighted Average: Precision: 0.93, Recall: 0.93, F1-score: 0.93
+
+
+**Test Dataset Performance:**
+
+
+
+**Inferences:**
+
+**High Training Performance**: The model exhibits very high performance on the training dataset, indicating it has learned the patterns in the data well.
+
+**Good Generalization**: The model performs robustly on the test dataset, suggesting it generalizes well to new, unseen data. The slight decrease in accuracy from training to testing is typical and indicates good generalization without significant overfitting.
+
+**Class-wise Variations**: While the model maintains strong performance across most classes, there is a noticeable drop in performance for benign positive incidents in the test set. This could be an area for further investigation and improvement.
+Overall, the Random Forest model demonstrates strong capabilities in classifying cybersecurity incidents, with good generalization to real-world data. Future improvements could focus on enhancing performance for specific classes and continuing to monitor and adjust the model as more data becomes available.
 
 ## Link to the notebook file
 You can view the full notebook with detailed analysis and code 
+
 Part1: [here](./MSCyberProj-Part1.ipynb).
+
 Part2: [here](./MSCyberProj-Part2.ipynb).
 
 
 ### Recommendations
-Integration into SOC Workflows:
 
-Enhanced Incident Triage: Integrate the model into SOC workflows to automate and refine the incident triage process, providing SOC analysts with precise classifications of incidents as TP, BP, or FP.
-Real-time Analysis: Deploy the model in real-time environments to assist in immediate incident response, helping analysts prioritize and address security threats more effectively.
-Potential Areas for Future Improvement:
+**Integration into SOC Workflows:**
 
-Feature Engineering: Explore additional feature engineering opportunities to further enhance model performance, such as incorporating more granular time features or external threat intelligence data.
-Model Refinement: Continuously monitor model performance and retrain with new data to adapt to evolving threat landscapes and improve accuracy over time.
-Hyperparameter Tuning: Further tune hyperparameters to optimize performance, potentially using more advanced techniques such as Bayesian optimization or ensemble methods.
-Considerations for Deployment:
+  **Enhanced Incident Triage:** Integrate the model into SOC workflows to automate and refine the incident triage process, providing SOC analysts with precise classifications of incidents as TP, BP, or FP.
+  **Real-time Analysis:** Deploy the model in real-time environments to assist in immediate incident response, helping analysts prioritize and address security threats more effectively.
 
-Scalability: Ensure the model can handle large volumes of data in a production environment, potentially leveraging scalable cloud infrastructure.
-Real-world Testing: Conduct extensive testing in a real-world setting to validate model performance and address any operational challenges.
-Feedback Loop: Implement a feedback loop to capture analyst insights and adjust the model based on real-world usage and performance metrics.
+**Potential Areas for Future Improvement:**
+
+**Feature Engineering:** Explore additional feature engineering opportunities to further enhance model performance, such as incorporating more granular time features or external threat intelligence data.
+
+**Model Refinement:** Continuously monitor model performance and retrain with new data to adapt to evolving threat landscapes and improve accuracy over time.
+
+**Considerations for Deployment:**
+
+  **Scalability**: Ensure the model can handle large volumes of data in a production environment, potentially leveraging scalable cloud infrastructure.
+  **Real-world Testing:** Conduct extensive testing in a real-world setting to validate model performance and address any operational challenges.
+  **Feedback Loop:** Implement a feedback loop to capture analyst insights and adjust the model based on real-world usage and performance metrics.
