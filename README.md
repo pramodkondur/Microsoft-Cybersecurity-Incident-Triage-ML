@@ -1,41 +1,14 @@
 
-# **Microsoft : Classifying Cybersecurity Incidents with Machine Learning**
-## Skills take away from this Project
-Data Preprocessing and Feature Engineering
+# **Microsoft : Cybersecurity Incident Detection with Machine Learning**
 
-Machine Learning Classification Techniques
+# Machine Learning Cybersecurity Project
 
-Model Evaluation Metrics (Macro-F1 Score, Precision, Recall)
+## Introduction
 
-Cybersecurity Concepts and Frameworks (MITRE ATT&CK)
-
-Handling Imbalanced Datasets
-
-Model Benchmarking and Optimization
-
-## Domain
-Cybersecurity and Machine Learning
-
-## Tools Used 
-**IDE & Notebooks:** PyCharm, Jupyter Notebook
-
-**Programming Language**: Python
-
-**Libraries**: scikit-learn, Pandas, Matplotlib, Seaborn, NumPy
-
-**Cloud Services:** BigQuery, Google Cloud Storage, Google Compute Engine
-
-**Version Control**: Git, Github
-
-## Dataset Overview
-GUIDE_train.csv (2.43 GB)
-GUIDE_test.csv (1.09 GB)
-
-The dataset provides three hierarchies of data: (1) evidence, (2) alert, and (3) incident. At the bottom level, evidence supports an alert. For example, an alert may be associated with multiple pieces of evidence such as an IP address, email, and user details, each containing specific supporting metadata. Above that, we have alerts that consolidate multiple pieces of evidence to signify a potential security incident. These alerts provide a broader context by aggregating related evidences to present a more comprehensive picture of the potential threat. At the highest level, incidents encompass one or more alerts, representing a cohesive narrative of a security breach or threat scenario.
-The primary objective of the dataset is to accurately predict incident triage grades—true positive (TP), benign positive (BP), and false positive (FP)—based on historical customer responses. To support this, we provide a training dataset containing 45 features, labels, and unique identifiers across 1M triage-annotated incidents. We divide the dataset into a train set containing 70% of the data and a test set with 30%, stratified based on triage grade ground-truth, OrgId, and DetectorId. We ensure that incidents are stratified together within the train and test sets to ensure the relevance of evidence and alert rows.
+In the rapidly evolving cybersecurity landscape, the increasing volume of incidents has overwhelmed Security Operation Centers (SOCs). To address this, there is a pressing need for solutions that can automate or support the remediation process effectively. This project leverages the GUIDE dataset—a groundbreaking collection of real-world cybersecurity incidents—to develop machine learning models for predicting significant cybersecurity incidents and facilitating informed decision-making.
 
 ## Problem Statement:
-As a data scientist at Microsoft, he/she is tasked with enhancing the efficiency of Security Operation Centers (SOCs) by developing a machine learning model that can accurately predict the triage grade of cybersecurity incidents. Utilizing the comprehensive GUIDE dataset, your goal is to create a classification model that categorizes incidents as true positive (TP), benign positive (BP), or false positive (FP) based on historical evidence and customer responses. The model should be robust enough to support guided response systems in providing SOC analysts with precise, context-rich recommendations, ultimately improving the overall security posture of enterprise environments.
+As a data scientist at Microsoft, he/she is tasked with enhancing the efficiency of Security Operation Centers (SOCs) by developing a machine learning model that can accurately predict the triage grade of cybersecurity incidents. Utilizing the comprehensive GUIDE dataset, the goal is to create a classification model that categorizes incidents as true positive (TP), benign positive (BP), or false positive (FP) based on historical evidence and customer responses. The model should be robust enough to support guided response systems in providing SOC analysts with precise, context-rich recommendations, ultimately improving the overall security posture of enterprise environments.
 
 ## Business Use Cases:
 The solution developed in this project can be implemented in various business scenarios, particularly in the field of cybersecurity. Some potential applications include:
@@ -48,88 +21,138 @@ The solution developed in this project can be implemented in various business sc
 
 **Enterprise Security Management**: Improving the overall security posture of enterprise environments by reducing the number of false positives and ensuring that true threats are addressed promptly.
 
-## Approach:
-### Data Exploration and Understanding:
+## Dataset Overview
 
-**Initial Inspection**: Start by loading the GUIDE_train.csv dataset and perform an initial inspection to understand the structure of the data, including the number of features, types of variables (categorical, numerical), and the distribution of the target variable (TP, BP, FP).
+GUIDE_train.csv (2.43 GB)
+GUIDE_test.csv (1.09 GB)
+[Kaggle Link to Dataset](https://www.kaggle.com/datasets/Microsoft/microsoft-security-incident-prediction)
 
-**Exploratory Data Analysis** (EDA): Use visualizations and statistical summaries to identify patterns, correlations, and potential anomalies in the data. Pay special attention to class imbalances, as they may require specific handling strategies later on.
+The GUIDE dataset consists of over 13 million pieces of evidence across three hierarchical levels:
 
-### Data Preprocessing:
+1. **Evidence**: Individual data points supporting an alert (e.g., IP addresses, user details).
+2. **Alert**: Aggregated evidences indicating potential security incidents.
+3. **Incident**: A comprehensive narrative representing one or more alerts.
+4. **Size**: Over 1 million annotated incidents with triage labels, and 26,000 incidents with remediation action labels.
+5. **Telemetry**: Data from over 6,100 organizations, including 441 MITRE ATT&CK techniques.
+6. **Training/Testing**: The dataset is divided into a training set (70%) and a test set (30%), ensuring stratified representation of triage grades and identifiers.
 
-**Handling Missing Data**: Identify any missing values in the dataset and decide on an appropriate strategy, such as imputation, removing affected rows, or using models that can handle missing data inherently.
+## Benchmarking
 
-**Feature Engineering**: Create new features or modify existing ones to improve model performance. For example, combining related features, deriving new features from timestamps (like hour of the day or day of the week), or normalizing numerical variables.
+The GUIDE dataset aims to establish standardized benchmarks for guided response systems:
 
-**Encoding Categorical Variables**: Convert categorical features into numerical representations using techniques like one-hot encoding, label encoding, or target encoding, depending on the nature of the feature and its relationship with the target variable.
+- **Primary Metric**: Macro-F1 score for incident triage predictions.
+- **Secondary Metric**: Precision and recall for remediation action predictions.
 
-### Data Splitting:
+## Privacy Considerations
 
-**Train-Validation Split**: Before diving into model training, split the train.csv data into training and validation sets. This allows for tuning and evaluating the model before final testing on test.csv. Typically, a 70-30 or 80-20 split is used, but this can vary depending on the dataset's size.
+To protect sensitive information, the dataset underwent a stringent anonymization process, including:
 
-**Stratification**: If the target variable is imbalanced, consider using stratified sampling to ensure that both the training and validation sets have similar class distributions.
+- **Pseudo-anonymization**: Sensitive values are hashed using SHA1 to maintain uniqueness without revealing identities.
+- **Random ID Replacement**: Hashed values are replaced with randomly generated IDs.
+- **Temporal Noise**: Timestamps are modified to prevent re-identification.
 
-### Model Selection and Training:
+## Acknowledgements
 
-**Baseline Model**: Start with a simple baseline model, such as a logistic regression or decision tree, to establish a performance benchmark. This helps in understanding how complex the model needs to be.
+This dataset is mainly hosted by Microsoft Security AI Research. For more information about GUIDE and its applications, please refer to the related [arXiv paper](https://arxiv.org/abs/2407.09017).
 
-**Advanced Models**: Experiment with more sophisticated models such as Random Forests, Gradient Boosting Machines (e.g., XGBoost, LightGBM), and Neural Networks. Each model should be tuned using techniques like grid search or random search over hyperparameters.
+## Microsoft Contacts
 
-**Cross-Validation**: Implement cross-validation (e.g., k-fold cross-validation) to ensure the model's performance is consistent across different subsets of the data. This reduces the risk of overfitting and provides a more reliable estimate of the model's performance.
+For inquiries, please reach out to:
 
-### Model Evaluation and Tuning:
+- **Scott Freitas**: [scottfreitas@microsoft.com](mailto:scottfreitas@microsoft.com)
+- **Jovan Kalajdjieski**: [jovank@microsoft.com](mailto:jovank@microsoft.com)
+- **Amir Gharib**: [agharib@microsoft.com](mailto:agharib@microsoft.com)
+- **Rob McCann**: [robmccan@microsoft.com](mailto:robmccan@microsoft.com)
 
-**Performance Metrics**: Evaluate the model using the validation set, focusing on macro-F1 score, precision, and recall. Analyze these metrics across different classes (TP, BP, FP) to ensure balanced performance.
 
-**Hyperparameter Tuning**: Based on the initial evaluation, fine-tune hyperparameters to optimize model performance. This may involve adjusting learning rates, regularization parameters, tree depths, or the number of estimators, depending on the model type.
+## Tools Used 
+**IDE & Notebooks:** PyCharm, Jupyter Notebook
 
-**Handling Class Imbalance**: If class imbalance is a significant issue, consider techniques such as SMOTE (Synthetic Minority Over-sampling Technique), adjusting class weights, or using ensemble methods to boost the model's ability to handle minority classes effectively.
+**Programming Language**: Python
 
-### Model Interpretation:
+**Libraries**: scikit-learn, Pandas, Matplotlib, Seaborn, NumPy
 
-**Feature Importance**: After selecting the best model, analyze feature importance to understand which features contribute most to the predictions. This can be done using methods like SHAP values, permutation importance, or model-specific feature importance measures.
+**Cloud Services:** BigQuery, Google Cloud Storage, Google Compute Engine
 
-**Error Analysis**: Perform an error analysis to identify common misclassifications. This can provide insights into potential improvements, such as additional feature engineering or refining the model's complexity.
+**Version Control**: Git, Github
 
-### Final Evaluation on Test Set:
+## Approach
 
-**Testing**: Once the model is finalized and optimized, evaluate it on the test.csv dataset. Report the final macro-F1 score, precision, and recall to assess how well the model generalizes to unseen data.
+### Data Exploration and Understanding
 
-**Comparison to Baseline**: Compare the performance on the test set to the baseline model and initial validation results to ensure consistency and improvement.
+**Initial Inspection**: Loaded the `GUIDE_train.csv` dataset and performed an initial inspection to understand the structure of the data, including the number of features, types of variables (categorical, numerical), and the distribution of the target variable (TP, BP, FP).
 
-### Documentation and Reporting:
+**Exploratory Data Analysis (EDA)**: Used visualizations and statistical summaries to identify patterns, correlations, and potential anomalies in the data. Paid special attention to class imbalances, which required specific handling strategies later on.
 
-**Model Documentation**: Thoroughly document the entire process, including the rationale behind chosen methods, challenges faced, and how they were addressed. Include a summary of key findings and model performance.
+### Data Preprocessing
 
-**Recommendations**: Provide recommendations on how the model can be integrated into SOC workflows, potential areas for future improvement, and considerations for deployment in a real-world setting.
+**Handling Missing Data**: Identified any missing values in the dataset and decided on an appropriate strategy, such as imputation, removing affected rows, or using models that can handle missing data inherently.
 
-## Link to the notebook file
-You can view the code and in depth analysis in the full notebooks
+**Feature Engineering**: Created new features or modified existing ones to improve model performance. For example, combined related features, derived new features from timestamps (like hour of the day or day of the week), and normalized numerical variables.
 
-Part1: [here](./MSCyberProj-Part1.ipynb)
+**Encoding Categorical Variables**: Converted categorical features into numerical representations using techniques like one-hot encoding, label encoding, or target encoding, depending on the nature of the feature and its relationship with the target variable.
 
-Part2: [here](./MSCyberProj-Part2.ipynb)
+### Data Splitting
+
+**Train-Validation Split**: Before diving into model training, split the `train.csv` data into training and validation sets. This allowed for tuning and evaluating the model before final testing on `test.csv`. A typical 70-30 or 80-20 split was used, varying depending on the dataset's size.
+
+**Stratification**: Used stratified sampling to ensure that both the training and validation sets had similar class distributions, especially since the target variable was imbalanced.
+
+### Model Selection and Training
+
+**Baseline Model**: Started with a simple baseline model, such as logistic regression or decision tree, to establish a performance benchmark. This helped in understanding the complexity needed for the final model.
+
+**Advanced Models**: Experimented with more sophisticated models such as Random Forests, Gradient Boosting Machines (e.g., XGBoost, LightGBM), and Neural Networks. Each model was tuned using techniques like grid search or random search over hyperparameters.
+
+**Cross-Validation**: Implemented cross-validation (e.g., k-fold) to ensure consistent model performance across different data subsets. This reduced the risk of overfitting and provided a reliable estimate of the model's performance.
+
+### Model Evaluation and Tuning
+
+**Performance Metrics**: Evaluated the model using the validation set, focusing on macro-F1 score, precision, and recall. Analyzed these metrics across different classes (TP, BP, FP) to ensure balanced performance.
+
+**Hyperparameter Tuning**: Fine-tuned hyperparameters based on the initial evaluation to optimize model performance. Adjusted learning rates, regularization parameters, tree depths, and the number of estimators, depending on the model type.
+
+**Handling Class Imbalance**: Used techniques such as SMOTE (Synthetic Minority Over-sampling Technique), adjusted class weights, or ensemble methods to improve the model's ability to handle minority classes effectively.
+
+### Model Interpretation
+
+**Feature Importance**: Analyzed feature importance after selecting the best model to understand which features contributed most to the predictions. This was done using methods like SHAP values, permutation importance, or model-specific feature importance measures.
+
+**Error Analysis**: Conducted an error analysis to identify common misclassifications, providing insights for potential improvements, such as additional feature engineering or refining the model's complexity.
+
+### Final Evaluation on Test Set
+
+**Testing**: Once the model was finalized and optimized, it was evaluated on the `test.csv` dataset. Reported the final macro-F1 score, precision, and recall to assess how well the model generalized to unseen data.
+
+**Comparison to Baseline**: Compared performance on the test set to the baseline model and initial validation results to ensure consistency and improvement.
+
+## Link to the Notebook Files
+
+You can view the code and in-depth analysis in the full notebooks:
+
+- Part 1: [here](./MSCyberProj-Part1.ipynb)
+- Part 2: [here](./MSCyberProj-Part2.ipynb)
 
 ## Utilization of Cloud 
 
-**Google Cloud**: Utilized Google Cloud Storage to store the huge data
+**Google Cloud**: Utilized Google Cloud Storage to store the large dataset.
 
-**BigQuery**: Utlized to fetch data from Google Cloud Storage into BigQuery to then be queried in jupyter notebook on cloud instance
+**BigQuery**: Used to fetch data from Google Cloud Storage into BigQuery, allowing for querying in a Jupyter notebook on a cloud instance.
 
-**Google Compute Engine**: Needed to utilize Google Cloud Compute instance due to the size of the dataset
+**Google Compute Engine**: Needed to utilize a Google Cloud Compute instance due to the dataset size.
 
 ## Results and Model Performance Analysis
 
-**Training Dataset Performance:**
+**Training Dataset Performance**: 
 
-Trained using ensemble methods XGBoost and Random Forest, Random Forest performs the best
+Trained using ensemble methods XGBoost and Random Forest; Random Forest performed the best.
 
 ![CHEESE!](RF_train_metrics.png)
 ![CHEESE!](XGB_train_metrics.png)
 
-**Test Dataset Performance:**
+**Test Dataset Performance**: 
 
-Thus selected Random Forest Classifier and used it on the test dataset
+Selected the Random Forest Classifier and applied it to the test dataset.
 
 ![CHEESE!](RF_test_metrics.png)
 
@@ -157,3 +180,16 @@ Overall, the Random Forest model demonstrates strong capabilities in classifying
   -**Real-world Testing:** Conduct extensive testing in a real-world setting to validate model performance and address any operational challenges.
   
   -**Feedback Loop:** Implement a feedback loop to capture analyst insights and adjust the model based on real-world usage and performance metrics.
+
+## Citation
+
+Please cite this work as follows:
+
+```bibtex
+@article{freitas2024ai,
+  title={AI-Driven Guided Response for Security Operation Centers with Microsoft Copilot for Security},
+  author={Freitas, Scott and Kalajdjieski, Jovan and Gharib, Amir and McCann, Rob},
+  journal={arXiv preprint arXiv:2407.09017},
+  year={2024}
+}
+
