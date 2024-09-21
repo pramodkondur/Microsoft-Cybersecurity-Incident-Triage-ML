@@ -1,6 +1,8 @@
 
 # **Microsoft : Cybersecurity Incident Detection with Machine Learning**
 
+![CHEESE!](cyber-security.jpg)
+
 ## Introduction
 
 In the rapidly evolving cybersecurity landscape, the increasing volume of incidents has overwhelmed Security Operation Centers (SOCs). To address this, there is a pressing need for solutions that can automate or support the remediation process effectively. This project leverages the GUIDE dataset—a groundbreaking collection of real-world cybersecurity incidents—to develop machine learning models for predicting significant cybersecurity incidents and facilitating informed decision-making.
